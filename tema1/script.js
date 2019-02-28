@@ -10,10 +10,13 @@ function generateRandomValues () {
   return response
 }
 
+let nrRequests = 50
+
 function makeCalls () {
   let r = generateRandomValues()
   async.eachLimit(r, 50, function (param, eachCb) {
     let url = `http://localhost:8081/api/logs?country=${param}`
+    console.log(param)
     request.get({
       url: url,
       time: true
@@ -22,6 +25,14 @@ function makeCalls () {
       console.log(responseBody)
       eachCb(null)
     })
+  }, function (err) {
+    if (err) console.error(err.message)
+    console.log(nrRequests)
+    nrRequests--
+    if (nrRequests === 0) {
+      process.exit(0)
+    }
+    makeCalls()
   })
 }
 
