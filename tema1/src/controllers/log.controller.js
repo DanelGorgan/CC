@@ -51,6 +51,7 @@ export async function requestAPIs (req, res) {
       if (error) { console.log(error) }
       await Log.create({
         requestName: url,
+        result: responseBody,
         ...response.timings
       })
       let url1 = `http://api.openweathermap.org/data/2.5/weather?q=${JSON.parse(responseBody)[0].capital}&appid=${config.weather_key}`
@@ -61,16 +62,22 @@ export async function requestAPIs (req, res) {
         if (error) { console.log(error) }
         await Log.create({
           requestName: url1,
+          result: responseBody,
           ...response.timings
         })
         responseBody = JSON.parse(responseBody)
-        console.log(responseBody.weather)
-        console.log(responseBody.weather[0].description)
         let weather = `Weather is ${responseBody.weather[0].main}. More details: ${responseBody.weather[0].description}.`
+        let url3 = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${config.translate_key}&text=${weather}&lang=en-ro`
         request.post({
-          url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${config.translate_key}&text=${weather}&lang=en-ro`
-        }, function (error, response, body) {
+          url: url3,
+          time: true
+        }, async function (error, response, body) {
           if (error) { console.log(error) }
+          await Log.create({
+            requestName: url3,
+            result: body,
+            ...response.timings
+          })
           res.writeHead(200, { 'Content-Type': 'application/json' })
           res.write(JSON.stringify(body))
           res.end()

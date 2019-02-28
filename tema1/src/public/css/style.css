@@ -44,5 +44,10 @@ div {
 }
 
 p {
-   display: inline-block;
+    display: inline-block;
+}
+
+td, tr {
+    word-wrap: break-word;
+    max-width: 150px;
 }
