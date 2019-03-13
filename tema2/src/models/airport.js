@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
-let userSchema = mongoose.Schema({}, {strict: false})
+let airportSchema = mongoose.Schema({}, { strict: false })
 
-let Airport = mongoose.model('Airport', userSchema)
+let Airport = mongoose.model('Airport', airportSchema)
 
 export default Airport
