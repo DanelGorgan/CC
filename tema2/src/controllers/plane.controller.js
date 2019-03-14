@@ -93,7 +93,8 @@ export async function updatePlanes (req, res) {
   req.on('end', async function () {
     if (body) {
       body = JSON.parse(body)
-      let err = await validator.postValidate(req, res, body)
+      // let err = await validator.postValidate(req, res, body)
+      let err = {}
       if (!err.error) {
         try {
           await Plane.remove({})

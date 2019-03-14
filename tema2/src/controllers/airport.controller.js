@@ -35,6 +35,7 @@ export async function getAirport (req, res) {
 
 export async function addAirports (req, res) {
   let body = ''
+  let created
   let airports = []
   req.on('data', chunk => {
     body += chunk
@@ -59,7 +60,7 @@ export async function addAirports (req, res) {
           }
         }
       }
-      !_.isEmpty(err) ? utilities.sendResponse(res, err, err.status_code) : utilities.sendResponse(res, {}, 201)
+      !_.isEmpty(err) ? utilities.sendResponse(res, err, err.status_code) : utilities.sendResponse(res, created, 201)
     }
   })
 }
@@ -75,10 +76,13 @@ export async function updateAirport (req, res) {
       let err = await validator.putValidate(req, res, body)
       if (!err.error) {
         try {
-          let updated = await Airport.findOneAndUpdate({ _id: req.params.id }, { $set: { name: body.airports.name } }, { new: true })
-          if (updated === null) {
-            err = new APIError('No airport updated. Check the id from the query', httpStatus.UNPROCESSABLE_ENTITY)
-            err = catchErrors(err)
+          let airport = await Airport.findOne({ name: body.airports.name })
+          if (airport) {
+            return utilities.sendResponse(res, 'There is already an airport with this name!', 409)
+          }
+          let updated = await Airport.updateOne({ _id: req.params.id }, { $set: body.airports }, { new: true })
+          if (updated.nModified === 0) {
+            return utilities.sendResponse(res, null, 204)
           }
         } catch (e) {
           err = new APIError('Error while updating the airport!', httpStatus.UNPROCESSABLE_ENTITY)
@@ -115,12 +119,12 @@ export async function updateAirports (req, res) {
   })
 }
 
-export async function deleteAirports (req, res) {
+export async function deleteAirport (req, res) {
   let err
   try {
     let d = await Airport.deleteOne({ _id: req.params.id })
     if (d.n === 0) {
-      err = new APIError('No airport deleted. Check the id from the params', httpStatus.UNPROCESSABLE_ENTITY)
+      err = new APIError('No airport deleted. Check the id ', httpStatus.UNPROCESSABLE_ENTITY)
       err = catchErrors(err)
     }
   } catch (e) {
@@ -128,4 +132,21 @@ export async function deleteAirports (req, res) {
     err = catchErrors(err)
   }
   !_.isEmpty(err) ? utilities.sendResponse(res, err, err.status_code) : utilities.sendResponse(res)
+}
+
+export async function deleteAirports (req, res) {
+  let err
+  try {
+    await Airport.remove({})
+  } catch (e) {
+    err = new APIError('Error while deleting the airport!', httpStatus.UNPROCESSABLE_ENTITY)
+    err = catchErrors(err)
+  }
+  !_.isEmpty(err) ? utilities.sendResponse(res, err, err.status_code) : utilities.sendResponse(res)
+}
+
+export async function cars (req, res) {
+  let err = new APIError('https://knowyourmeme.com/photos/1252533-i-bet-there-will-be-flying-cars-in-the-future', httpStatus.NOT_IMPLEMENTED)
+  err = catchErrors(err)
+  utilities.sendResponse(res, err, err.status_code)
 }
