@@ -146,7 +146,7 @@ export async function deleteAirports (req, res) {
 }
 
 export async function cars (req, res) {
-  let err = new APIError('https://knowyourmeme.com/photos/1252533-i-bet-there-will-be-flying-cars-in-the-future', httpStatus.NOT_IMPLEMENTED)
+  let err = new APIError('https://me.me/i/1970-in-the-future-i-bet-we-will-have-flying-20315727', httpStatus.UNPROCESSABLE_ENTITY)
   err = catchErrors(err)
   utilities.sendResponse(res, err, err.status_code)
 }

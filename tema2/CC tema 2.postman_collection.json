@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "e9135e1f-bba0-47d1-958f-110679492a9a",
+		"name": "CC tema 2",
+		"description": "Collection for testing Airport API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Airport",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace74da7afe3708369fa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace74da7afe3708369fa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":{\n\t\t\"city\": \"Iasi\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace74da7afe3708369fa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace74da7afe3708369fa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAll",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Cluj\",\n\t\t\"city\":\"Cluj\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace74da7afe3708369fa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace74da7afe3708369fa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAll",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace71da7afe3708369f9f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace71da7afe3708369f9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cars?",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8acfadaac5ec1650fb9534/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8acfadaac5ec1650fb9534",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plane",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace5220b2582904f52211/planes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace5220b2582904f52211",
+								"planes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace5220b2582904f52211/planes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace5220b2582904f52211",
+								"planes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"airports\":[{\n\t\t\"name\":\"Aeroportul din Iasi\",\n\t\t\"city\":\"Iasi\"\n\t},\n\t{\n\t\t\"name\":\"Otopeni\",\n\t\t\"city\":\"Bucuresti\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace5220b2582904f52211/planes/5c8ad64868d1e1478c40a941",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace5220b2582904f52211",
+								"planes",
+								"5c8ad64868d1e1478c40a941"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"planes\":{\n\t\t\"name\":\"beonggg\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/airports/5c8ace5220b2582904f52211/planes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"airports",
+								"5c8ace5220b2582904f52211",
+								"planes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
