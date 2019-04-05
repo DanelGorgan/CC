@@ -1,0 +1,1 @@
+https://us-central1-baietii.cloudfunctions.net/maps
