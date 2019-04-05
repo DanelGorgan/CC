@@ -1,0 +1,25 @@
+{
+  "name": "tema3_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "deploy": "gcloud app deploy",
+    "start": "node app.js",
+    "system-test": "repo-tools test app",
+    "test": "npm run system-test",
+    "e2e-test": "repo-tools test deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "@google-cloud/datastore": "^3.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "http-status-codes": "^1.3.2",
+    "uuid": "^3.3.2"
+  }
+}
