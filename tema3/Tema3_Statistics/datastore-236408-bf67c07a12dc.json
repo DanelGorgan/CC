@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "datastore-236408",
+  "private_key_id": "bf67c07a12dc391f75458342d402dc74dc25732d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCxH2aJdZ1LiYi1\ncboOzbKofKS5qOF9R8vdXkcMFqcw/JeWSlX5bZCW5Pf/nzHiRuezyaGVDxurGob4\n7adQzhtKfwAVT2Ez2wTlPYThNLZwzlBfmMpiq7NxpVJZKTGi8XXCah6JTU9r10w3\n73xz3cQ3yqvD8AxqjKpiq8fuy5esKU4uMk8JZM1Mj1ukm0Dd5xTU63D6zdsUfTqq\nvu4r45cVQ0qJpHeL8SD6Dn9/AVgD6TDqgLYD3nE0iBEczT1Ombpe6repvfNF1PU4\nArpWLSLiBhuaPPSO02xhpEaCsoX8gAKBZ6jGtZUq5/471zGPT/+6z1iVCpIoRrvd\nqnas9xkPAgMBAAECggEAKns8BhMJ/3CEs/QLanqGc6e1gHwTXQ9nw3fVtX4HapXi\nq563oSPYroBLROmDNuDHuNTO5ufhPHgX0EN7wkM0w3jTZckMqLnKokrPgI46hbLO\nDyefvuuslcDPj+fz6j9cfZ0jJs4+ksBoHPBZGpchdTosWUnNSI7lXNYTlWAKSDWW\n+5LQNqVsxfCDvMDer/dXKIn1qssHw/haAf7H/uvUYH3o5gbvjVSv79mQHRwxIXYu\ncBpUz/XzfdN/Dl8vNHdUzd9XFnYnqIkSFIjmGv0sZgW2o3mCJK7E5+yuM68h4JLc\nGHMWUh7ZAO3ukosZMUO1oXu+svZtKN0tBxvT74MxbQKBgQDx3qLcMwfQ8VmbLjYX\n5rkxkJV0/hCHdPzKrvMij7tS8NViJxddO3tksJCCHzcnfE1ADUd923XV0sYIyw9y\nMpiU0UDfk74XOuAbgSI3N6b2F5vovFUBuV69KU6pZ5vB1X2zAGkgkrtE25GZk+bG\nFC5UPGCDyl9oAtYOGdNXF8L7rQKBgQC7eGsf+vDHgCKQObvzs/0ZcjJlFp2bj4n7\nUUNc9s2JgnR7LTUSn2nEx6flRoITtUvDjOTXFdZxtU7fTcWNfJ+xF9ghjsjdt5s5\nRiAoX1kg0zUu8mRiS7jRWGjMFBJ3L91zjJIuccx7OoQkXYPXftzcaEkG9YALRTfG\nfdGV0Ux/KwKBgQCpEqxdqP5pvIyawW7mvk3uq9cN9Ruw1MJxHGKxYi/cBqXi+tiG\nP7I97H7XtuJjI60MfTvgaqywT6pHM0sU1PF79dqXbzuOGYXXNCmq16hKlq5RvnTd\nw6rKKDnoiZiDoq0/l6XlMyzdMW9SH+VNyYWpNJtzBOA0YOco7DyjwOR38QKBgDA7\nOexfZmUdXUcX43g+nWZXkAmb+O6Vzl0fOiKHyLeRHaC3L8lbxB2BdHuzWTHy2cw0\nyodfse1NRT6ERsgxAPDR/qQblSgd3cytcwaQCWE9lZg/en4jlygdA9FFdL6/TM02\npEFYu9AUbPziJlJh7Da0id1FeizsIP5rTmmqEHFDAoGBAJDewhDoSRO6gW2yQkMf\nyTC3XiuYA5BDqo2iftnUf8Lj7rN9Mc4kj8GsykbbJQ21nVHu59rKK0o0ihgKxsPr\nA9lcwbMmR97brQ0Wv9EkeT+hhkvq2Hq8l+wQDcwlWbhvoHHnp0Ru5YznrA0BQMMf\nKi046EtIsEQjo3Zt1Gk7k8zJ\n-----END PRIVATE KEY-----\n",
+  "client_email": "datastore@datastore-236408.iam.gserviceaccount.com",
+  "client_id": "114585838430329678465",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/datastore%40datastore-236408.iam.gserviceaccount.com"
+}

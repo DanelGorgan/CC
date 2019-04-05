@@ -1,0 +1,13 @@
+body{
+    background-color: antiquewhite;
+}
+
+h2 {
+    font-family: Lato, serif;
+}
+
+table{
+    font-size: 25px;
+    font-family: Lato, serif;
+    text-align: left;
+}
