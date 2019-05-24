@@ -18,17 +18,15 @@ app.use(express.static('public'));
 
 app.use(cors());
 
-app.post('/events', (req, res) => {
-    eventController.addEvent(req, res).catch(console.error);
-});
+app.post('/places', eventController.addPlace);
 
-app.get('/events/:id', (req, res) => {
-    eventController.getEvent(req, res).catch(console.error);
-});
+app.get('/places/:id', eventController.getPlace);
 
-app.get('/events', (req, res) => {
-    eventController.getEvents(req, res).catch(console.error);
-});
+app.put('/places/:id', eventController.updatePlace);
+
+app.delete('/places/:id', eventController.deletePlace);
+
+app.get('/places', eventController.getPlaces);
 
 app.get('/', (req, res) => {
     res.json('DATASTORE service')

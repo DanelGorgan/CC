@@ -9,48 +9,60 @@ const datastore = new Datastore({
     projectId: projectId,
 });
 
-exports.addEvent = async function (req, res) {
+exports.addPlace = async function (req, res) {
 
-    const eventKey = datastore.key(['Events', uuidv4()]);
+    const placeKey = datastore.key(['Places', uuidv4()]);
 
-    const eventId = uuidv4();
-
-    const event = {
-        key: eventKey,
-        data: {...req.body, id: eventId}
+    const place = {
+        key: placeKey,
+        data: req.body
     };
 
-    await datastore.save(event);
-    for (let i = 0; i < req.body.guests.length; i++) {
-        const invitationKey = datastore.key(['Invitations', uuidv4()]);
-        const d = new Date();
-        const invitation = {
-            key: invitationKey,
-            data: {
-                "event_id": eventId,
-                "sender": req.body.email,
-                "receiver": req.body.guests[i],
-                "response": "no",
-                "date": d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()
-            }
-        };
-        await datastore.save(invitation);
-    }
-
-    res.json({msg: "done"})
+    await datastore.save(place);
+    return res.json({msg: "done"})
 };
 
-exports.getEvents = async function (req, res) {
-    const query = datastore.createQuery('Events');
-    let list = await query.run();
+exports.getPlaces = async function (req, res) {
+    const query = datastore.createQuery('Places');
+    let places = await query.run();
 
-    res.json({response: list[0]})
+    places[0].map(place =>{
+        place['id'] =  place[datastore.KEY]['name']
+    });
+
+    res.json(places[0])
 };
 
-exports.getEvent = async function (req, res) {
-    const query = datastore.createQuery('Events').filter("id", "=", req.params.id);
-    let event = await query.run();
+exports.getPlace = async function (req, res) {
+    const placeKey = datastore.key(['Places', req.params.id]);
+    const [entity] = await datastore.get(placeKey);
 
-    res.json({response: event[0]})
+    res.json(entity)
+};
+
+exports.updatePlace = async function (req, res) {
+
+    const placeKey = datastore.key(['Places', req.params.id]);
+    const [entity] = await datastore.get(placeKey);
+
+    Object.keys(req.body).map(key => {
+        entity[key] = req.body[key]
+    });
+
+    const updatedEntity = {
+        key: placeKey,
+        data: entity,
+    };
+
+    await datastore.update(updatedEntity);
+    return res.json({msg: "Success!"})
+};
+
+
+exports.deletePlace = async function (req, res) {
+    const placeKey = datastore.key(['Places', req.params.id]);
+    const [entity] = await datastore.delete(placeKey);
+
+    res.json(entity)
 };
 
