@@ -18,19 +18,17 @@ app.use(express.static('public'));
 
 app.use(cors());
 
-app.post('/places', eventController.addPlace);
+app.get('/:tablename', eventController.getAllFromDatabase);
 
-app.get('/places/:id', eventController.getPlace);
+app.put('/:tablename/:id', eventController.updateEntity);
 
-app.put('/places/:id', eventController.updatePlace);
+app.post('/:tablename', eventController.addEntity);
 
-app.delete('/places/:id', eventController.deletePlace);
+app.delete('/:tablename/:id', eventController.deleteEntity);
 
-app.get('/places', eventController.getPlaces);
+app.get('/:tablename/:attribute/:value', eventController.getEntityByAttribute);
 
-app.get('/reservations', eventController.getAllReservations);
-
-app.get('/reservations/:id', eventController.getReservationById);
+app.get('/:tablename/:id', eventController.getEntityById);
 
 app.get('/', (req, res) => {
     res.json('DATASTORE service')

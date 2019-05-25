@@ -9,78 +9,76 @@ const datastore = new Datastore({
     projectId: projectId,
 });
 
-exports.addPlace = async function (req, res) {
+exports.getAllFromDatabase = async function (req, res) {
+    let tablename = req.params.tablename
+    const query = datastore.createQuery([tablename.charAt(0).toUpperCase() + tablename.slice(1)]);
+    let elements = await query.run()
 
-    const placeKey = datastore.key(['Places', uuidv4()]);
+    elements[0].map(element => {
+        element['id'] = element[datastore.KEY]['name']
 
-    const place = {
-        key: placeKey,
-        data: req.body
-    };
-
-    await datastore.save(place);
-    return res.json({msg: "done"})
-};
-
-exports.getPlaces = async function (req, res) {
-    const query = datastore.createQuery('Places');
-    let places = await query.run();
-
-    places[0].map(place =>{
-        place['id'] =  place[datastore.KEY]['name']
     });
 
-    res.json(places[0])
-};
+    res.json(elements[0])
+}
 
-exports.getPlace = async function (req, res) {
-    const placeKey = datastore.key(['Places', req.params.id]);
-    const [entity] = await datastore.get(placeKey);
-
-    res.json(entity)
-};
-
-exports.getAllReservations = async function (req, res) {
-    const query = datastore.createQuery(['Reservation']);
-    let reservations = await query.run()
-
-    reservations[0].map(reservation => {
-        reservation['id'] = [datastore.KEY]['name']
-    });
-
-    res.json(reservations[0])
-};
-
-exports.getReservationById = async function (req, res) {
-    const query = datastore.createQuery('Reservation').filter('placeId', '=', req.params.id);
-    let event = await query.run();
-
-    res.json(event[0])
-};
+exports.updateEntity = async function(req, res) {
+    let lwrTablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
+    const entityKey = datastore.key([lwrTablename, req.params.id]);
+    const [entity] = await datastore.get(entityKey);
 
 
-exports.updatePlace = async function (req, res) {
-
-    const placeKey = datastore.key(['Places', req.params.id]);
-    const [entity] = await datastore.get(placeKey);
 
     Object.keys(req.body).map(key => {
-        entity[key] = req.body[key]
+        entity[key] = req.body[key];
     });
 
     const updatedEntity = {
-        key: placeKey,
+        key: entityKey,
         data: entity,
     };
 
     await datastore.update(updatedEntity);
-    return res.json({msg: "Success!"})
+    return res.json({status: "success"})
+};
+
+exports.addEntity = async function (req, res) {
+    let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
+    const entityKey = datastore.key([tablename, uuidv4()]);
+
+    const newEntity = {
+        key: entityKey,
+        data: req.body
+    };
+
+    await datastore.save(newEntity);
+    return res.json({message: "success"})
 };
 
 
-exports.deletePlace = async function (req, res) {
-    const placeKey = datastore.key(['Places', req.params.id]);
-    const [entity] = await datastore.delete(placeKey);
+exports.deleteEntity = async function (req, res) {
+    let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
+    const entityKey = datastore.key([tablename, req.params.id]);
+    const [entity] = await datastore.delete(entityKey);
+
+    res.json({"message" : "success"})
+};
+
+
+exports.getEntityByAttribute = async function(req, res) {
+    let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
+    const query = datastore.createQuery([tablename]).filter(req.params.attribute, "=", req.params.value);
+    let event = await query.run();
+
+    res.json({response: event[0]})
+};
+
+exports.getEntityById = async function(req, res) {
+    let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
+    const entityKey = datastore.key([tablename, req.params.id]);
+    const [entity] = await datastore.get(entityKey);
+
+    entity['id'] = entity[datastore.KEY]['name']
 
     res.json(entity)
 };
