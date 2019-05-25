@@ -28,6 +28,10 @@ app.delete('/places/:id', eventController.deletePlace);
 
 app.get('/places', eventController.getPlaces);
 
+app.get('/reservations', eventController.getAllReservations);
+
+app.get('/reservations/:id', eventController.getReservationById);
+
 app.get('/', (req, res) => {
     res.json('DATASTORE service')
 });

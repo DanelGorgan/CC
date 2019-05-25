@@ -40,6 +40,25 @@ exports.getPlace = async function (req, res) {
     res.json(entity)
 };
 
+exports.getAllReservations = async function (req, res) {
+    const query = datastore.createQuery(['Reservation']);
+    let reservations = await query.run()
+
+    reservations[0].map(reservation => {
+        reservation['id'] = [datastore.KEY]['name']
+    });
+
+    res.json(reservations[0])
+};
+
+exports.getReservationById = async function (req, res) {
+    const query = datastore.createQuery('Reservation').filter('placeId', '=', req.params.id);
+    let event = await query.run();
+
+    res.json(event[0])
+};
+
+
 exports.updatePlace = async function (req, res) {
 
     const placeKey = datastore.key(['Places', req.params.id]);
