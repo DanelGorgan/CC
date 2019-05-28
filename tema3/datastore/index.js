@@ -18,6 +18,8 @@ app.use(express.static('public'));
 
 app.use(cors());
 
+app.get('/reservations/:ownerId', eventController.getReservationsByOwnerId);
+
 app.get('/:tablename', eventController.getAllFromDatabase);
 
 app.put('/:tablename/:id', eventController.updateEntity);

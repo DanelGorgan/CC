@@ -1,5 +1,6 @@
 const {Datastore} = require('@google-cloud/datastore'),
     uuidv4 = require('uuid/v4'),
+    async = require('async'),
     config = require('./config');
 
 
@@ -22,11 +23,10 @@ exports.getAllFromDatabase = async function (req, res) {
     res.json(elements[0])
 }
 
-exports.updateEntity = async function(req, res) {
+exports.updateEntity = async function (req, res) {
     let lwrTablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
     const entityKey = datastore.key([lwrTablename, req.params.id]);
     const [entity] = await datastore.get(entityKey);
-
 
 
     Object.keys(req.body).map(key => {
@@ -61,11 +61,11 @@ exports.deleteEntity = async function (req, res) {
     const entityKey = datastore.key([tablename, req.params.id]);
     const [entity] = await datastore.delete(entityKey);
 
-    res.json({"message" : "success"})
+    res.json({"message": "success"})
 };
 
 
-exports.getEntityByAttribute = async function(req, res) {
+exports.getEntityByAttribute = async function (req, res) {
     let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
     const query = datastore.createQuery([tablename]).filter(req.params.attribute, "=", req.params.value);
     let event = await query.run();
@@ -73,7 +73,7 @@ exports.getEntityByAttribute = async function(req, res) {
     res.json({response: event[0]})
 };
 
-exports.getEntityById = async function(req, res) {
+exports.getEntityById = async function (req, res) {
     let tablename = req.params.tablename.charAt(0).toUpperCase() + req.params.tablename.slice(1);
     const entityKey = datastore.key([tablename, req.params.id]);
     const [entity] = await datastore.get(entityKey);
@@ -83,10 +83,19 @@ exports.getEntityById = async function(req, res) {
     res.json(entity)
 };
 
-exports.getReservationsByPlaceID = async function(req, res) {
-    const query = datastore.createQuery(['Reservations']).filter("placeId", "=", req.params.placeId);
-    let event = await query.run();
+exports.getReservationsByOwnerId = async function (req, res) {
+    let query = datastore.createQuery(['Places']).filter("ownerId", "=", req.params.ownerId);
+    let places = await query.run();
+    let reservations = [];
+    async.each(places[0], async (place, cb) => {
+        query = await datastore.createQuery(['Reservations']).filter("placeId", "=", place[datastore.KEY]['name']);
+        let reservation = await query.run();
+        reservation[0][0].place = place.name;
+        reservations.push(reservation[0][0])
+    }, (err, result) => {
+        return res.json(reservations)
+    })
 
-    res.json(event[0])
-}
+
+};
 
