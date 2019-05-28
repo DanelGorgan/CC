@@ -83,3 +83,10 @@ exports.getEntityById = async function(req, res) {
     res.json(entity)
 };
 
+exports.getReservationsByPlaceID = async function(req, res) {
+    const query = datastore.createQuery(['Reservations']).filter("placeId", "=", req.params.placeId);
+    let event = await query.run();
+
+    res.json(event[0])
+}
+
