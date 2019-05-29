@@ -18,6 +18,10 @@ app.use(express.static('public'));
 
 app.use(cors());
 
+app.get('/rooms/:roomId', eventController.getRoomById);
+
+app.get('/places/:placeId', eventController.getPlaceById);
+
 app.get('/reservations/:ownerId', eventController.getReservationsByOwnerId);
 
 app.get('/:tablename', eventController.getAllFromDatabase);
