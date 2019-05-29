@@ -93,7 +93,7 @@ exports.getReservationsByOwnerId = async function (req, res) {
         for (let i = 0; i < reservation[0].length; i++) {
             reservation[0][i].place = place.name;
             reservation[0][i].id = reservation[0][i][datastore.KEY]['name']
-            reservations.push(reservation[0][0])
+            reservations.push(reservation[0][i])
         }
         cb()
     }, (err, result) => {
