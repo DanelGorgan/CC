@@ -87,11 +87,12 @@ exports.getReservationsByOwnerId = async function (req, res) {
     let query = datastore.createQuery(['Places']).filter("ownerId", "=", req.params.ownerId);
     let places = await query.run();
     let reservations = [];
-    async.each(places[0], async (place, cb) => {
+    async.eachSeries(places[0], async (place, cb) => {
         query = await datastore.createQuery(['Reservations']).filter("placeId", "=", place[datastore.KEY]['name']);
         let reservation = await query.run();
         reservation[0][0].place = place.name;
         reservations.push(reservation[0][0])
+        cb()
     }, (err, result) => {
         return res.json(reservations)
     })
