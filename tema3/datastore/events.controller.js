@@ -96,7 +96,22 @@ exports.getReservationsByOwnerId = async function (req, res) {
     }, (err, result) => {
         return res.json(reservations)
     })
-
-
 };
 
+exports.getPlaceById = async function (req, res) {
+    const placeKey = datastore.key(['Places', req.params.placeId])
+    const [place] = await datastore.get(placeKey)
+
+    place['id'] = place[datastore.KEY]['name']
+
+    res.json(place)
+};
+
+exports.getRoomById = async function (req, res) {
+    const roomKey = datastore.key(['Rooms', req.params.roomId])
+    const [room] = await datastore.get(roomKey)
+
+    room['id'] = room[datastore.KEY]['name']
+
+    res.json(room)
+};
