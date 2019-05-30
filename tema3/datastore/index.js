@@ -18,6 +18,8 @@ app.use(express.static('public'));
 
 app.use(cors());
 
+app.get('/places/:placeId/rooms', eventController.getRoomsByPlaceId);
+
 app.get('/rooms/:roomId', eventController.getRoomById);
 
 app.get('/places/:placeId', eventController.getPlaceById);

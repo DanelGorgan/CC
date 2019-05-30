@@ -123,3 +123,19 @@ exports.getRoomById = async function (req, res) {
 
     res.json(room)
 };
+
+exports.getRoomsByPlaceId = async function (req, res) {
+    const query = datastore.createQuery(['Rooms']).filter("placeId", "=", req.params.placeId)
+    let rooms = await query.run()
+
+    rooms[0].map(room => {
+            room['id'] = room[datastore.KEY]['name']
+    });
+
+    res.json(rooms[0])
+}
+
+
+
+
+
